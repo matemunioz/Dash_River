@@ -28,10 +28,24 @@ app.config.suppress_callback_exceptions = True
 app.title = "Club Atlético River Plate"
 
 
+
+
 server = app.server
 
 # Leer los datos
-df = pd.read_csv("todos_los_partidos-2.csv")
+import zipfile
+import pandas as pd
+
+# Nombre del archivo ZIP
+zip_file = "todos_los_partidos-2.zip"
+
+# Abre el archivo ZIP
+with zipfile.ZipFile(zip_file, 'r') as z:
+    # Extrae el nombre del archivo CSV dentro del ZIP
+    with z.open('todos_los_partidos-2.csv') as f:
+        # Lee el archivo CSV directamente desde el ZIP
+        df = pd.read_csv(f)
+
 
 # Agrupar por 'Jugador' y 'Rival' y sumar las acciones
 grouped_df = df.groupby(['Jugador', 'Rival']).agg({
