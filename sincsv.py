@@ -28,7 +28,7 @@ app.config.suppress_callback_exceptions = True
 app.title = "Club Atlético River Plate"
 
 
-
+server = app.server
 
 # Leer los datos
 df = pd.read_csv("todos_los_partidos-2.csv")
@@ -3773,5 +3773,5 @@ def render_content(tab):
 
 
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+#if __name__ == '__main__':
+#    app.run_server(debug=True)
